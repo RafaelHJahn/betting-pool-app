@@ -1,4 +1,5 @@
 import eslint from "@eslint/js";
+import vitest from "@vitest/eslint-plugin";
 import { defineConfig } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import eslintConfigPrettier from "eslint-config-prettier";
@@ -55,5 +56,22 @@ export default defineConfig(
       "simple-import-sort": simpleImportSort,
     },
     rules: importSortRules,
+  },
+  {
+    files: ["**/*.{test,spec}.{ts,tsx}"],
+    extends: [vitest.configs.recommended],
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+      },
+    },
+    settings: {
+      vitest: {
+        typecheck: true,
+      },
+    },
+    rules: {
+      "vitest/valid-title": ["error", { mustMatch: { it: ["^should .+"] } }],
+    },
   },
 );
