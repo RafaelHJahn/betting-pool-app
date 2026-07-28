@@ -12,18 +12,23 @@ Frontend do bolão — Next.js (App Router), TypeScript, Tailwind CSS e shadcn/u
 ```bash
 pnpm install
 pnpm exec lefthook install
+pnpm exec playwright install chromium
 ```
 
 O `lefthook install` configura os git hooks localmente (pre-commit: lint + format; commit-msg: commitlint). É necessário **uma vez por clone** — não roda automaticamente no `pnpm install`.
+
+Required once per clone — downloads Chromium binaries for E2E tests.
 
 ## Scripts
 
 ```bash
 pnpm dev          # servidor de desenvolvimento
 pnpm build        # build estático (gera out/)
-pnpm start        # serve out/ localmente
+pnpm start        # serve out/ na porta 3000
 pnpm test         # Vitest (run once)
 pnpm test:watch   # Vitest (watch mode)
+pnpm test:e2e     # Playwright E2E (run once)
+pnpm test:e2e:ui  # Playwright E2E (UI mode)
 pnpm lint         # ESLint
 pnpm lint:fix     # ESLint com auto-fix
 pnpm format       # Prettier (check)
