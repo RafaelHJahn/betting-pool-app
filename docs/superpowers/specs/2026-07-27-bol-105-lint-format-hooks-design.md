@@ -11,49 +11,49 @@ Configurar lint, formatação e hooks de commit no `betting-pool-app`, alinhados
 
 ## Decisões de design
 
-| Decisão | Escolha |
-|---------|---------|
-| Abordagem ESLint | `eslint-config-next/core-web-vitals` + blocos híbridos |
-| Type-check ESLint | Só em `lib/**` e `types/**` (`recommendedTypeChecked`) |
-| Import sort | `eslint-plugin-simple-import-sort` com grupos adaptados para `@/` |
-| Prettier | `.prettierrc.json` idêntico ao backend (`printWidth: 100`) |
-| Git hooks | lefthook — instalação **manual** (`pnpm exec lefthook install`) |
-| Commits | commitlint conventional + `scope-case: lower-case` |
-| `prepare` script | Não — evita falha em `pnpm install --prod` |
+| Decisão           | Escolha                                                           |
+| ----------------- | ----------------------------------------------------------------- |
+| Abordagem ESLint  | `eslint-config-next/core-web-vitals` + blocos híbridos            |
+| Type-check ESLint | Só em `lib/**` e `types/**` (`recommendedTypeChecked`)            |
+| Import sort       | `eslint-plugin-simple-import-sort` com grupos adaptados para `@/` |
+| Prettier          | `.prettierrc.json` idêntico ao backend (`printWidth: 100`)        |
+| Git hooks         | lefthook — instalação **manual** (`pnpm exec lefthook install`)   |
+| Commits           | commitlint conventional + `scope-case: lower-case`                |
+| `prepare` script  | Não — evita falha em `pnpm install --prod`                        |
 
 ## Stack de ferramentas
 
-| Ferramenta | Versão (alinhada ao backend quando possível) |
-|------------|-----------------------------------------------|
-| ESLint | ^9 (já instalado) |
-| eslint-config-next | 16.2.12 (já instalado) |
-| @eslint/js | ^10.0.1 |
-| typescript-eslint | ^8.62.1 |
-| eslint-config-prettier | ^10.1.8 |
-| eslint-plugin-simple-import-sort | ^13.0.0 |
-| prettier | ^3.9.4 |
-| lefthook | ^2.1.9 |
-| @commitlint/cli | ^21.2.0 |
-| @commitlint/config-conventional | ^21.2.0 |
+| Ferramenta                       | Versão (alinhada ao backend quando possível) |
+| -------------------------------- | -------------------------------------------- |
+| ESLint                           | ^9 (já instalado)                            |
+| eslint-config-next               | 16.2.12 (já instalado)                       |
+| @eslint/js                       | ^10.0.1                                      |
+| typescript-eslint                | ^8.62.1                                      |
+| eslint-config-prettier           | ^10.1.8                                      |
+| eslint-plugin-simple-import-sort | ^13.0.0                                      |
+| prettier                         | ^3.9.4                                       |
+| lefthook                         | ^2.1.9                                       |
+| @commitlint/cli                  | ^21.2.0                                      |
+| @commitlint/config-conventional  | ^21.2.0                                      |
 
 ## Arquivos
 
-| Arquivo | Ação | Responsabilidade |
-|---------|------|------------------|
-| `eslint.config.js` | Criar | Flat config híbrido (Next + type-checked + config files) |
-| `.prettierrc.json` | Criar | Formatação (`printWidth: 100`) |
-| `.prettierignore` | Criar | Ignorar lockfile, workspace e artefatos de build |
-| `lefthook.yml` | Criar | pre-commit (eslint + prettier) e commit-msg (commitlint) |
-| `commitlint.config.js` | Criar | Conventional commits com scope lowercase |
-| `package.json` | Modificar | Scripts e devDependencies |
-| `pnpm-workspace.yaml` | Modificar | `allowBuilds: lefthook: true` |
+| Arquivo                | Ação      | Responsabilidade                                         |
+| ---------------------- | --------- | -------------------------------------------------------- |
+| `eslint.config.js`     | Criar     | Flat config híbrido (Next + type-checked + config files) |
+| `.prettierrc.json`     | Criar     | Formatação (`printWidth: 100`)                           |
+| `.prettierignore`      | Criar     | Ignorar lockfile, workspace e artefatos de build         |
+| `lefthook.yml`         | Criar     | pre-commit (eslint + prettier) e commit-msg (commitlint) |
+| `commitlint.config.js` | Criar     | Conventional commits com scope lowercase                 |
+| `package.json`         | Modificar | Scripts e devDependencies                                |
+| `pnpm-workspace.yaml`  | Modificar | `allowBuilds: lefthook: true`                            |
 
 ## ESLint — estrutura do flat config
 
 ### Bloco 1 — Ignores globais
 
 ```js
-ignores: [".next/**", "out/**", "node_modules/**", "coverage/**"]
+ignores: [".next/**", "out/**", "node_modules/**", "coverage/**"];
 ```
 
 ### Bloco 2 — Next.js (app + components)

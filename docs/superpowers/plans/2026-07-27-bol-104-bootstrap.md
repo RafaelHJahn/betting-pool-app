@@ -27,39 +27,43 @@
 
 ## File map
 
-| File | Action | Responsibility |
-|------|--------|----------------|
-| `app/globals.css` | Create (via shadcn) | shadcn theme CSS variables |
-| `app/layout.tsx` | Create (via scaffold) | Root layout, metadata, font |
-| `app/page.tsx` | Modify | Minimal homepage |
-| `components/ui/button.tsx` | Create (via shadcn) | First shadcn component |
-| `lib/utils.ts` | Create (via shadcn) | `cn()` helper |
-| `types/.gitkeep` | Create | Placeholder for future shared types |
-| `components.json` | Create (via shadcn) | shadcn configuration |
-| `next.config.ts` | Create + Modify | Next.js config with static export |
-| `package.json` | Create + Modify | Dependencies, scripts, engines |
-| `tsconfig.json` | Create (via scaffold) | TypeScript strict config |
-| `.nvmrc` | Create | Node version pin |
-| `pnpm-lock.yaml` | Create (via install) | Lockfile |
+| File                       | Action                | Responsibility                      |
+| -------------------------- | --------------------- | ----------------------------------- |
+| `app/globals.css`          | Create (via shadcn)   | shadcn theme CSS variables          |
+| `app/layout.tsx`           | Create (via scaffold) | Root layout, metadata, font         |
+| `app/page.tsx`             | Modify                | Minimal homepage                    |
+| `components/ui/button.tsx` | Create (via shadcn)   | First shadcn component              |
+| `lib/utils.ts`             | Create (via shadcn)   | `cn()` helper                       |
+| `types/.gitkeep`           | Create                | Placeholder for future shared types |
+| `components.json`          | Create (via shadcn)   | shadcn configuration                |
+| `next.config.ts`           | Create + Modify       | Next.js config with static export   |
+| `package.json`             | Create + Modify       | Dependencies, scripts, engines      |
+| `tsconfig.json`            | Create (via scaffold) | TypeScript strict config            |
+| `.nvmrc`                   | Create                | Node version pin                    |
+| `pnpm-lock.yaml`           | Create (via install)  | Lockfile                            |
 
 ---
 
 ### Task 1: Scaffold Next.js project
 
 **Files:**
+
 - Create: `app/layout.tsx`, `app/page.tsx`, `app/globals.css` (initial), `next.config.ts`, `package.json`, `tsconfig.json`, `public/*`
 - Preserve: `docs/` (do not delete)
 
 **Interfaces:**
+
 - Produces: Next.js App Router project at repo root without `src/`, ready for shadcn init
 
 - [ ] **Step 1: Verify Node and pnpm versions**
 
 Run:
+
 ```bash
 node -v
 pnpm -v
 ```
+
 Expected: Node `>=26.4.0`, pnpm `11.9.0` (or compatible)
 
 - [ ] **Step 2: Scaffold Next.js in repo root**
@@ -100,9 +104,11 @@ rm -rf /tmp/bol-104-scaffold
 - [ ] **Step 3: Verify scaffold structure**
 
 Run:
+
 ```bash
 ls -la app/ package.json tsconfig.json next.config.ts
 ```
+
 Expected: all files exist; no `src/` directory
 
 - [ ] **Step 4: Verify TypeScript strict and ESM**
@@ -120,9 +126,11 @@ Confirm `package.json` has `"type": "module"`. If missing, add it:
 - [ ] **Step 5: Verify dev server starts**
 
 Run:
+
 ```bash
 pnpm dev
 ```
+
 Expected: server starts on `http://localhost:3000` without errors. Stop the server after verifying.
 
 ---
@@ -130,9 +138,11 @@ Expected: server starts on `http://localhost:3000` without errors. Stop the serv
 ### Task 2: Configure static export
 
 **Files:**
+
 - Modify: `next.config.ts`
 
 **Interfaces:**
+
 - Consumes: Next.js scaffold from Task 1
 - Produces: `next.config.ts` with static export settings
 
@@ -156,9 +166,11 @@ export default nextConfig;
 - [ ] **Step 2: Verify static export build**
 
 Run:
+
 ```bash
 pnpm build
 ```
+
 Expected: build succeeds and `out/` directory is created
 
 - [ ] **Step 3: Commit**
@@ -179,16 +191,19 @@ EOF
 ### Task 3: Initialize shadcn/ui and add Button
 
 **Files:**
+
 - Create: `components.json`, `lib/utils.ts`, `components/ui/button.tsx`
 - Modify: `app/globals.css`, `package.json` (shadcn deps)
 
 **Interfaces:**
+
 - Consumes: Next.js project from Task 1–2
 - Produces: `components.json` with `style: "new-york"` and `baseColor: "neutral"`; `Button` component at `@/components/ui/button`
 
 - [ ] **Step 1: Initialize shadcn/ui with new-york + neutral preset**
 
 Run:
+
 ```bash
 pnpm dlx shadcn@latest init --preset "https://ui.shadcn.com/init?style=new-york&baseColor=neutral"
 ```
@@ -218,6 +233,7 @@ Style may appear as `"new-york"` or an equivalent preset name — the visual res
 - [ ] **Step 3: Add Button component**
 
 Run:
+
 ```bash
 pnpm dlx shadcn@latest add button
 ```
@@ -227,9 +243,11 @@ Expected: creates `components/ui/button.tsx` and `lib/utils.ts`
 - [ ] **Step 4: Verify build still passes**
 
 Run:
+
 ```bash
 pnpm build
 ```
+
 Expected: PASS, `out/` generated
 
 - [ ] **Step 5: Commit**
@@ -250,11 +268,13 @@ EOF
 ### Task 4: Minimal homepage and project alignment
 
 **Files:**
+
 - Modify: `app/page.tsx`
 - Create: `types/.gitkeep`, `.nvmrc`
 - Modify: `package.json` (engines, packageManager)
 
 **Interfaces:**
+
 - Consumes: `Button` from `@/components/ui/button`
 - Produces: homepage rendering `<h1>Bolão</h1>` + `<Button>Entrar</Button>`
 
@@ -278,6 +298,7 @@ export default function HomePage() {
 - [ ] **Step 2: Create types directory placeholder**
 
 Run:
+
 ```bash
 mkdir -p types
 touch types/.gitkeep
@@ -307,18 +328,22 @@ Add to `package.json`:
 - [ ] **Step 5: Verify final build**
 
 Run:
+
 ```bash
 pnpm install
 pnpm build
 ```
+
 Expected: PASS, `out/index.html` exists
 
 - [ ] **Step 6: Verify homepage content in build output**
 
 Run:
+
 ```bash
 grep -q "Bolão" out/index.html && grep -q "Entrar" out/index.html && echo "Homepage OK"
 ```
+
 Expected: `Homepage OK`
 
 - [ ] **Step 7: Commit**
@@ -343,6 +368,7 @@ EOF
 - [ ] **Step 1: Run full acceptance checklist**
 
 Run:
+
 ```bash
 pnpm install
 pnpm build
@@ -351,22 +377,25 @@ pnpm dev
 ```
 
 Manual check at `http://localhost:3000`:
+
 - Page shows "Bolão" heading
 - Page shows "Entrar" button styled with shadcn
 
 - [ ] **Step 2: Verify repo structure matches spec**
 
 Run:
+
 ```bash
 test -d app && test -d components/ui && test -d lib && test -d types && test ! -d src && echo "Structure OK"
 ```
+
 Expected: `Structure OK`
 
 - [ ] **Step 3: Confirm acceptance criteria**
 
-| Criterion | Command | Expected |
-|-----------|---------|----------|
-| `pnpm install` | `pnpm install` | No errors |
-| `pnpm build` | `pnpm build` | Generates `out/` without errors |
-| shadcn component on homepage | manual / grep | `Button` renders |
-| `pnpm dev` | `pnpm dev` | Server starts, homepage loads |
+| Criterion                    | Command        | Expected                        |
+| ---------------------------- | -------------- | ------------------------------- |
+| `pnpm install`               | `pnpm install` | No errors                       |
+| `pnpm build`                 | `pnpm build`   | Generates `out/` without errors |
+| shadcn component on homepage | manual / grep  | `Button` renders                |
+| `pnpm dev`                   | `pnpm dev`     | Server starts, homepage loads   |

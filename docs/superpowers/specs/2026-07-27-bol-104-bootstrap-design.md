@@ -10,25 +10,25 @@ Criar o projeto Next.js (App Router) em TypeScript strict, com Tailwind CSS e sh
 
 ## Decisões de design
 
-| Decisão | Escolha |
-|---------|---------|
-| Abordagem | `create-next-app` + `shadcn init` (CLIs oficiais) |
-| Estilo shadcn | `new-york` |
-| Cor base | `neutral` |
-| Homepage | Mínima — título "Bolão" + `Button` shadcn |
-| Package manager | `pnpm@11.9.0` |
-| Node | `>=26.4.0` (`.nvmrc` com `26.4.0`) |
-| Estrutura | Sem `src/` — pastas na raiz |
+| Decisão         | Escolha                                           |
+| --------------- | ------------------------------------------------- |
+| Abordagem       | `create-next-app` + `shadcn init` (CLIs oficiais) |
+| Estilo shadcn   | `new-york`                                        |
+| Cor base        | `neutral`                                         |
+| Homepage        | Mínima — título "Bolão" + `Button` shadcn         |
+| Package manager | `pnpm@11.9.0`                                     |
+| Node            | `>=26.4.0` (`.nvmrc` com `26.4.0`)                |
+| Estrutura       | Sem `src/` — pastas na raiz                       |
 
 ## Stack
 
-| Item | Decisão |
-|------|---------|
-| Framework | Next.js (App Router), última versão estável |
-| Linguagem | TypeScript strict, ESM (`"type": "module"`) |
-| CSS | Tailwind CSS v4 (padrão do shadcn atual) |
-| UI | shadcn/ui — `new-york` + `neutral` |
-| Build | `output: "export"` + `images.unoptimized: true` |
+| Item      | Decisão                                         |
+| --------- | ----------------------------------------------- |
+| Framework | Next.js (App Router), última versão estável     |
+| Linguagem | TypeScript strict, ESM (`"type": "module"`)     |
+| CSS       | Tailwind CSS v4 (padrão do shadcn atual)        |
+| UI        | shadcn/ui — `new-york` + `neutral`              |
+| Build     | `output: "export"` + `images.unoptimized: true` |
 
 ## Fora do escopo
 
