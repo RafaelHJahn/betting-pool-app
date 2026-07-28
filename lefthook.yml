@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   jobs:
     - name: eslint
-      glob: "{app,components,lib,types}/**/*.{ts,tsx}"
+      glob: "{app,components,lib,types,e2e}/**/*.{ts,tsx}"
       run: pnpm exec eslint -- {staged_files}
 
     - name: prettier

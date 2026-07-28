@@ -3,6 +3,7 @@ import vitest from "@vitest/eslint-plugin";
 import { defineConfig } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import eslintConfigPrettier from "eslint-config-prettier";
+import playwright from "eslint-plugin-playwright";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tseslint from "typescript-eslint";
 
@@ -22,7 +23,14 @@ const importSortRules = {
 
 export default defineConfig(
   {
-    ignores: [".next/**", "out/**", "node_modules/**", "coverage/**"],
+    ignores: [
+      ".next/**",
+      "out/**",
+      "node_modules/**",
+      "coverage/**",
+      "playwright-report/**",
+      "test-results/**",
+    ],
   },
   {
     files: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
@@ -59,6 +67,7 @@ export default defineConfig(
   },
   {
     files: ["**/*.{test,spec}.{ts,tsx}"],
+    ignores: ["e2e/**"],
     extends: [vitest.configs.recommended],
     languageOptions: {
       parserOptions: {
@@ -72,6 +81,13 @@ export default defineConfig(
     },
     rules: {
       "vitest/valid-title": ["error", { mustMatch: { it: ["^should .+"] } }],
+    },
+  },
+  {
+    files: ["e2e/**/*.ts"],
+    extends: [playwright.configs["flat/recommended"]],
+    rules: {
+      "playwright/valid-title": ["error", { mustMatch: { test: "^should .+" } }],
     },
   },
 );
