@@ -33,7 +33,12 @@ pnpm lint         # ESLint
 pnpm lint:fix     # ESLint com auto-fix
 pnpm format       # Prettier (check)
 pnpm format:fix   # Prettier (write)
+pnpm typecheck    # TypeScript (tsc --noEmit)
 ```
+
+## CI
+
+O workflow `Verify` (`.github/workflows/ci.yml`) roda automaticamente em push e PR para `development` e `main`. Steps: format → lint → typecheck → test → E2E (inclui build estático via Playwright).
 
 ## Commits
 
