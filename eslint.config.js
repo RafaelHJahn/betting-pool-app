@@ -23,10 +23,9 @@ export default defineConfig(
   {
     ignores: [".next/**", "out/**", "node_modules/**", "coverage/**"],
   },
-  ...nextVitals,
   {
     files: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
-    extends: [eslintConfigPrettier],
+    extends: [...nextVitals, eslintConfigPrettier],
     plugins: {
       "simple-import-sort": simpleImportSort,
     },
