@@ -33,7 +33,7 @@ pnpm lint         # ESLint
 pnpm lint:fix     # ESLint com auto-fix
 pnpm format       # Prettier (check)
 pnpm format:fix   # Prettier (write)
-pnpm typecheck    # TypeScript (tsc --noEmit)
+pnpm typecheck    # TypeScript (next typegen + tsc --noEmit)
 ```
 
 ## CI
