@@ -22,6 +22,8 @@ O `lefthook install` configura os git hooks localmente (pre-commit: lint + forma
 pnpm dev          # servidor de desenvolvimento
 pnpm build        # build estático (gera out/)
 pnpm start        # serve out/ localmente
+pnpm test         # Vitest (run once)
+pnpm test:watch   # Vitest (watch mode)
 pnpm lint         # ESLint
 pnpm lint:fix     # ESLint com auto-fix
 pnpm format       # Prettier (check)
